@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
+    android:background="@color/white"
     android:orientation="vertical"
     >
 
@@ -75,14 +76,41 @@
             >
         </TextView>
 
+
+
         <com.ingenieriajhr.pascalandroid.PressureMeterView
             android:id="@+id/viewPascal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="200dp">
 
         </com.ingenieriajhr.pascalandroid.PressureMeterView>
 
+
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:id="@+id/imgFormula"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                >
+            </ImageView>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:id="@+id/imgTemplate"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            >
+        </ImageView>
+
+
+
     </LinearLayout>
+
 
 
 

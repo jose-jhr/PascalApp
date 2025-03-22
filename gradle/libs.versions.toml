@@ -14,6 +14,8 @@ mathview = "0.0.6"
 appcompatV7 = "28.0.0"
 mathjaxview = "1.0.7"
 androidTex = "1.0.0"
+katexmathview = "1.0.3"
+latexAndroid = "1.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -29,6 +31,8 @@ mathview = { group = "io.github.kexanie.library", name = "MathView", version.ref
 appcompat-v7 = { group = "com.android.support", name = "appcompat-v7", version.ref = "appcompatV7" }
 mathjaxview = { group = "io.github.sidvenu.mathjaxview", name = "mathjaxview", version.ref = "mathjaxview" }
 android-tex = { group = "io.nano", name = "android-tex", version.ref = "androidTex" }
+katexmathview = { group = "in.hourglass.mathrender", name = "katexmathview", version.ref = "katexmathview" }
+latex-android = { group = "com.github.ishom01", name = "Latex-Android", version.ref = "latexAndroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -5,7 +5,6 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -14,6 +13,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.ingenieriajhr.blujhr.BluJhr
 import com.ingenieriajhr.pascalandroid.databinding.ActivityMainBinding
+import com.ishom.jlatexmath.JLatexMathDrawable
+import kotlinx.coroutines.delay
+import kotlin.math.abs
 import kotlin.math.sqrt
 
 class MainActivity : AppCompatActivity() {
@@ -112,8 +114,30 @@ class MainActivity : AppCompatActivity() {
                 runOnUiThread {
                     vb.txtConsole.text = "Datos de llegada "+rx
 
+                    val resultDeltaX = calculateDeltaX(rx.toFloat())
+                    val resultPresure = calculatePresion(resultDeltaX)
+
+                             val latexPresion = """
+            P = ($resultPresure) =\frac{K \Delta x}{A} = 714.3 * \Delta x 
+                     """.trimIndent()
+
+                    //Latext formula general
+                    val latex = """
+            \Delta x = ($resultDeltaX) = \frac{-0.26 \pm \sqrt{0.26^2 - 4(0.40)(1.12 - $rx)}}{2(0.40)}
+        """.trimIndent()
 
 
+                    //Latex template
+                    val drawableTemplate = JLatexMathDrawable.builder(latexPresion)
+                        .textSize(20f).align(JLatexMathDrawable.ALIGN_CENTER)
+                        .build()
+                    //latex formula general
+                    val drawable = JLatexMathDrawable.builder(latex)
+                        .textSize(20f).align(JLatexMathDrawable.ALIGN_CENTER)
+                        .build()
+                    //formula set image
+                    vb.imgFormula.setImageDrawable(drawable)
+                    vb.imgTemplate.setImageDrawable(drawableTemplate)
                     //if rx is number
                     if (rx.toIntOrNull() != null){
                         vb.viewPascal.setPressure(rx.toFloat())
@@ -125,16 +149,27 @@ class MainActivity : AppCompatActivity() {
 
 
     /**
-     * Calcular la presión a partir del voltaje
+     * Calcular delta X
      * @param voltaje el voltaje medido
      * @return la presión calculada
      */
-    fun calculatePressure(voltaje: Float): Float {
+    fun calculateDeltaX(voltaje: Float): Float {
         //delta x
-        val deltaX = (-0.26+ sqrt((0.0676-(1.6*(1.12-voltaje)))))/(0.8)
+        val deltaX = (-0.26+ sqrt(abs(0.0676-(1.6*(1.12-voltaje)))))/(0.8)
         //calculate pressure
+        return deltaX.toFloat()
+    }
+
+    /**
+     * Calculadora de presion usando la formula establecida.
+     * @param deltaX el deltaX calculado
+     * @return la presión calculada
+     */
+    fun calculatePresion(deltaX:Float): Float {
         return (deltaX*714.3).toFloat()
     }
+
+
 
 
     /**
