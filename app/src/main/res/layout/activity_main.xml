@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -14,55 +14,75 @@
         android:id="@+id/txtTittleApp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="PascalApp"
-        android:textSize="25dp"
-        android:textColor="@color/blue"
+        android:text="@string/pascalapp"
         android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="28sp"
         android:textStyle="bold"
-        >
-    </TextView>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/rounded_head"
+        android:backgroundTint="@color/blue"
+        android:paddingTop="18dp"
+        android:paddingBottom="18dp"
+        />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="gone"
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="20dp"
         android:id="@+id/viewDevice"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:padding="8dp"
+        android:translationZ="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTittleApp"
+        android:visibility="gone"
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="Seleccione un dispositivo Bluetooth"
-            android:layout_marginStart="10dp"
-            android:textColor="@color/blue"
-            >
-        </TextView>
+        app:cardCornerRadius="10dp">
 
-
-        <ListView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/listDeviceBluetooth"
-            >
-        </ListView>
+            android:orientation="vertical"
+           >
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Seleccione un dispositivo Bluetooth"
+                android:textColor="@color/blue"
+                android:textStyle="bold" />
+
+
+            <ListView
+                android:id="@+id/listDeviceBluetooth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/viewDashboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        >
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@+id/txtTittleApp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Dispositivo conectado"
-            android:textColor="@color/blue"
-            >
+            android:textColor="@color/blue">
 
         </TextView>
 
@@ -72,10 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Conectado"
-            android:textSize="20sp"
-            >
-        </TextView>
-
+            android:textSize="20sp" />
 
 
         <com.ingenieriajhr.pascalandroid.PressureMeterView
@@ -85,33 +102,92 @@
 
         </com.ingenieriajhr.pascalandroid.PressureMeterView>
 
-
-
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:id="@+id/imgFormula"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                >
-            </ImageView>
-
-        <ImageView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:id="@+id/imgTemplate"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            >
-        </ImageView>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:padding="8dp"
+            android:translationZ="10dp"
+            app:cardCornerRadius="10dp">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Delta X"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:textStyle="bold"></TextView>
+
+
+                <ImageView
+                    android:id="@+id/imgFormula"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"></ImageView>
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5sp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="20dp"
+            android:padding="8dp"
+            android:translationZ="10dp"
+            app:cardCornerRadius="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pascales"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/imgTemplate"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp" />
+
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
 
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/blue"
+        android:background="@drawable/rounded_footer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 
-</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

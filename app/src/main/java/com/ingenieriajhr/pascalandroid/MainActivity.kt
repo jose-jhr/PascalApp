@@ -41,6 +41,9 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        //Change color bar
+        window.statusBarColor = getColor(R.color.blue)
+
         //init blu Jhr
         blue = BluJhr(this)
         blue.onBluetooth()
@@ -140,7 +143,7 @@ class MainActivity : AppCompatActivity() {
                     vb.imgTemplate.setImageDrawable(drawableTemplate)
                     //if rx is number
                     if (rx.toIntOrNull() != null){
-                        vb.viewPascal.setPressure(rx.toFloat())
+                        vb.viewPascal.setPressure(resultPresure)
                     }
                 }
             }

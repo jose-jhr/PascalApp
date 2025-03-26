@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PascalAndroid</string>
+    <string name="pascalapp">PascalApp</string>
 </resources>
