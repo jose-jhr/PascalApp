@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.SweepGradient
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import kotlin.math.cos
@@ -16,7 +17,7 @@ class PressureMeterView(context: Context, attrs: AttributeSet?) : View(context, 
 
     private val paint = Paint()
     private var currentPressure: Float = 0f // Valor de presión (de 0 a 2000 Pascales)
-    private val maxPressure: Float = 2000f
+    private val maxPressure: Float = 1292f
     private val startAngle = 180f // Ángulo de inicio del arco (180 grados para empezar en la parte inferior)
     private val sweepAngle = 180f // Ángulo de barrido del arco (180 grados para un semicírculo)
 
@@ -105,6 +106,7 @@ class PressureMeterView(context: Context, attrs: AttributeSet?) : View(context, 
 
     fun setPressure(pressure: Float) {
         currentPressure = pressure.coerceIn(0f, maxPressure)
+        Log.d("PRESSURE", "Pressure: $currentPressure")
         invalidate() // Redibujar la vista
     }
 }

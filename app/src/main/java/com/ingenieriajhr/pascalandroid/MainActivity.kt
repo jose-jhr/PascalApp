@@ -107,7 +107,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
     /**
      * Rx Data received
      */
@@ -115,20 +114,19 @@ class MainActivity : AppCompatActivity() {
         blue.loadDateRx(object : BluJhr.ReceivedData {
             override fun rxDate(rx: String) {
                 runOnUiThread {
-                    vb.txtConsole.text = "Datos de llegada "+rx
+                    vb.txtConsole.text = "Voltaje de llegada "+rx
 
                     val resultDeltaX = calculateDeltaX(rx.toFloat())
                     val resultPresure = calculatePresion(resultDeltaX)
 
-                             val latexPresion = """
-            P = ($resultPresure) =\frac{K \Delta x}{A} = 714.3 * \Delta x 
-                     """.trimIndent()
+                    val latexPresion = """
+                            P = ($resultPresure) =\frac{K \Delta x}{A} = 714.3 * \Delta x 
+                                     """.trimIndent()
 
-                    //Latext formula general
-                    val latex = """
-            \Delta x = ($resultDeltaX) = \frac{-0.26 \pm \sqrt{0.26^2 - 4(0.40)(1.12 - $rx)}}{2(0.40)}
-        """.trimIndent()
-
+                                    //Latext formula general
+                                    val latex = """
+                            \Delta x = ($resultDeltaX) = \frac{-0.26 \pm \sqrt{0.26^2 - 4(0.40)(1.12 - $rx)}}{2(0.40)}
+                        """.trimIndent()
 
                     //Latex template
                     val drawableTemplate = JLatexMathDrawable.builder(latexPresion)
@@ -141,9 +139,12 @@ class MainActivity : AppCompatActivity() {
                     //formula set image
                     vb.imgFormula.setImageDrawable(drawable)
                     vb.imgTemplate.setImageDrawable(drawableTemplate)
+                    Log.d("PRESSURE", "Pressure output: $rx")
                     //if rx is number
-                    if (rx.toIntOrNull() != null){
-                        vb.viewPascal.setPressure(resultPresure)
+                    if (rx.isNotEmpty()){
+                        Log.d("PRESSURE", "Pressure into: $rx")
+                        vb.viewPascal.setPressure(abs(resultPresure))
+                        vb.viewPascal.invalidate()
                     }
                 }
             }
